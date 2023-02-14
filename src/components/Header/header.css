@@ -1,0 +1,16 @@
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: slateblue;
+}
+
+.search {
+  color: white;
+
+}
+
+.search-container{
+  display: flex;
+  justify-content: space-between;
+}
