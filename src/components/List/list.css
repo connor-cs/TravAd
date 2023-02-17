@@ -3,5 +3,19 @@
 }
 
 .list-container{
-  border: solid 2px black;
+  border: solid 5px purple;
+}
+
+.list{
+  height: 80vh;
+  overflow: auto;
+}
+
+.cards-container{
+  margin-top: 20px;
+  border: 5px solid green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

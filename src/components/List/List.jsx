@@ -1,10 +1,16 @@
-import React, {useState} from 'react'
-import { Grid, Typography, FormControl, Select, InputLabel, MenuItem } from '@mui/material'
+import React, { useState } from 'react'
+import { Grid, Typography, FormControl, Select, InputLabel, MenuItem, CircularProgress } from '@mui/material'
 import PlaceDetails from '../PlaceDetails/PlaceDetails'
+import './list.css'
 
-export default function List() {
+export default function List({places, isLoading }) {
   const [type, setType] = useState('restaurants')
-  
+
+  // const places = [
+  //   { name: 'place1' },
+  //   { name: 'place2' }
+  // ]
+
   return (
     <div className='list-container'>
       <Typography variant="h4">Food and Dining around you</Typography>
@@ -24,12 +30,18 @@ export default function List() {
           <MenuItem>c</MenuItem>
         </Select>
       </FormControl>
-      <div className='grid-container'>
-        <Grid container spacing={3}>
-          <PlaceDetails />
+
+      <div className='cards-container'>
+        <Grid container spacing={3} className="list">
+          {places?.map((el, i) => (
+            <Grid item key={i}>
+              <PlaceDetails place={el} />
+            </Grid>
+          ))}
         </Grid>
       </div>
+
     </div>
-    
+
   )
 }

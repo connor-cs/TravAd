@@ -9,6 +9,7 @@ import {
   InputLabel,
 } from "@mui/material";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
+import './header.css'
 
 export default function Header() {
   return (
