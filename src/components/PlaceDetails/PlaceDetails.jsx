@@ -4,53 +4,50 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import './placeDetails.css'
 
-export default function PlaceDetails({place}) {
+export default function PlaceDetails({ place }) {
   // console.log({place})
   return (
     <Card >
       <CardMedia
-      style={{height: 300}}
+        style={{ height: 300 }}
         image={place.photo ? place.photo.images.large.url : null}
         alt={"restaurant photo"}
         title={place.name}
       />
       <CardContent>
-      <Typography variant="h5">{place.name}</Typography>
-      
-      <Box display="flex" justifyContent="space-between">
-        <Rating readOnly value={Number(place.rating)} />
-        <Typography>Reviews: {place.num_reviews}</Typography>
-      </Box>
-      
-      <Box display="flex" justifyContent="space-between">
-        <Typography>Price: {place.price_level}</Typography>
-      </Box>
-      
-      <Box display="flex" justifyContent="space-between">
-        <Typography>Ranking: {place.ranking}</Typography>
-      </Box>
+        <Typography variant="h5">{place.name}</Typography>
 
-      {place?.cuisine?.map(({ name }) => (
-          <Chip key={name} size="small" label={name} />
+        <Box display="flex" justifyContent="space-between">
+          <Rating readOnly value={Number(place.rating)} />
+          <Typography>Reviews: {place.num_reviews}</Typography>
+        </Box>
+
+        <Box display="flex" justifyContent="space-between">
+          <Typography>Price: {place.price_level}</Typography>
+        </Box>
+
+        <Box display="flex" justifyContent="space-between">
+          <Typography>Ranking: {place.ranking}</Typography>
+        </Box>
+
+        {place?.cuisine?.map(({ name }) => (
+          <Chip key={name} size="small" label={name} className="chip" />
         ))}
-      {place.address && (
-        <Typography>
-          <LocationOnIcon /> {place.address}
-        </Typography>
-      )}
+        {place.address && (
+          <Typography className='subtitle' color="textSecondary">
+            <LocationOnIcon /> {place.address}
+          </Typography>
+        )}
 
-      {place.phone && (
-        <Typography>
-          <PhoneIcon /> {place.phone}
-        </Typography>
-      )}
+        {place.phone && (
+          <Typography className='subtitle' color="textSecondary">
+            <PhoneIcon /> {place.phone}
+          </Typography>
+        )}
 
-      
-      <Button onClick={()=>window.open(place.website)}>Website</Button>
-      <Button onClick={()=>window.open(place.web_url)}>Trip Advisor</Button>
-        
-      
 
+        <Button onClick={() => window.open(place.website)} style={{ "margin-top": "15px" }}>Website</Button>
+        <Button onClick={() => window.open(place.web_url)} style={{ "margin-top": "15px" }}>Trip Advisor</Button>
       </CardContent>
     </Card>
   )

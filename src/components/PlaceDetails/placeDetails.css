@@ -1,0 +1,10 @@
+.subtitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.chip{
+    margin: 5px 5px 5px;
+}
