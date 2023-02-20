@@ -22,14 +22,21 @@ export const App = () => {
   const [places, setPlaces] = useState([])
   const [type, setType] = useState('restaurants')
   const [isLoading, setIsLoading] = useState(false)
+  const [cardClicked, setCardClicked] = useState(null)
+
+
 
   useEffect(() => {
-    console.log("bounds from parent", bounds)
-    console.log("coords from parent", coords)
+    // console.log("bounds from parent", bounds)
+    // console.log("coords from parent", coords)
+
+    setIsLoading(true)
+
     getPlacesData(type, bounds.sw, bounds.ne)
       .then(data => {
         setPlaces(data)
         console.log(places)
+        setIsLoading(false)
       })
   }, [coords])
 
@@ -38,7 +45,7 @@ export const App = () => {
       <Header />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item md={4}>
-          <List places={places} isLoading={isLoading} />
+          <List places={places} isLoading={isLoading} cardClicked={cardClicked} isLoading={isLoading}/>
         </Grid>
         <Grid
           item
@@ -54,6 +61,8 @@ export const App = () => {
             setCoords={setCoords}
             bounds={bounds}
             setBounds={setBounds}
+            places={places}
+            setCardClicked={setCardClicked}
           />
         </Grid>
       </Grid>

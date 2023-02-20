@@ -13,7 +13,7 @@ export const getPlacesData = async (type, sw, ne) => {
         tr_latitude: ne.lat,
       },
       headers: {
-        'x-rapidapi-key': "5e91f18e89msh621e829d8be17c1p1c357bjsn1e49248fff38",
+        'x-rapidapi-key': "68401ebe54msh8af2606513d710bp1b21b0jsn49f916645636",
         'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
       },
     });
@@ -25,3 +25,4 @@ export const getPlacesData = async (type, sw, ne) => {
   }
 };
 
+// "5e91f18e89msh621e829d8be17c1p1c357bjsn1e49248fff38"
