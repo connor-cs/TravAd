@@ -45,7 +45,7 @@ export const App = () => {
       <Header />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item md={4}>
-          <List places={places} isLoading={isLoading} cardClicked={cardClicked} isLoading={isLoading}/>
+          <List places={places} isLoading={isLoading} cardClicked={cardClicked} />
         </Grid>
         <Grid
           item
