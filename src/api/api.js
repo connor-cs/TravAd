@@ -26,3 +26,5 @@ export const getPlacesData = async (type, sw, ne) => {
 };
 
 // "5e91f18e89msh621e829d8be17c1p1c357bjsn1e49248fff38"
+
+//make call to weather api
