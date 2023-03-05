@@ -7,13 +7,19 @@ import {
   InputLabel,
   MenuItem,
 } from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 import PlaceDetails from "../PlaceDetails/PlaceDetails";
 import "./list.css";
 
-export default function List({ places, cardClicked, isLoading }) {
-  const [type, setType] = useState("restaurants");
-  const [rating, setRating] = useState("");
+export default function List({
+  places,
+  cardClicked,
+  isLoading,
+  type,
+  setType,
+  rating,
+  setRating,
+}) {
   const [elementRefs, setElementRefs] = useState([]);
 
   //array of all card refs
@@ -34,15 +40,14 @@ export default function List({ places, cardClicked, isLoading }) {
     <div className="list-container">
       {isLoading ? (
         <div className="loading">
-          <CircularProgress size="6rem"/>
-          </div>
-        
+          <CircularProgress size="6rem" />
+        </div>
       ) : (
         <>
           <Typography variant="h4">Food and Dining around you</Typography>
           <FormControl className="form-cont">
             <InputLabel>Type</InputLabel>
-            <Select value={type}>
+            <Select value={type} onChange={(e)=>setType(e.target.value)}>
               <MenuItem value="restaurants">Restaurants</MenuItem>
               <MenuItem value="hotels">Hotels</MenuItem>
               <MenuItem value="businesses">Businesses</MenuItem>
@@ -50,10 +55,12 @@ export default function List({ places, cardClicked, isLoading }) {
           </FormControl>
           <FormControl className="form-cont">
             <InputLabel>Rating</InputLabel>
-            <Select value={""}>
-              <MenuItem>a</MenuItem>
-              <MenuItem>b</MenuItem>
-              <MenuItem>c</MenuItem>
+            <Select value={rating} onChange={(e)=>{
+              console.log('rating changed',{rating})
+              setRating(e.target.value)}}>
+              <MenuItem>3.0 and up</MenuItem>
+              <MenuItem>4.0 and up</MenuItem>
+              <MenuItem>4.5 and above</MenuItem>
             </Select>
           </FormControl>
 

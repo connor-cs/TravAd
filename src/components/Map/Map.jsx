@@ -21,7 +21,7 @@ export default function Map({ coords, setCoords, setBounds, places, setCardClick
         bootstrapURLKeys={{ key }}
         defaultCenter={defaultProps.center} //this will be user's current location from browswer
         defaultZoom={defaultProps.zoom}
-        center={defaultProps.center} //{coords}
+        center={coords} //{coords}
         options={""}
         onChange={(e) => {
           console.log("center", e.center);

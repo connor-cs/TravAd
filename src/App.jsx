@@ -7,45 +7,70 @@ import { getPlacesData } from "./api/api";
 
 export const App = () => {
   //api call needs map bounds
-  const [bounds, setBounds] = useState({
-    "ne": {
-      "lat": 45.81069796653989,
-      "lng": -69.92865078125001
-    },
-    "sw": {
-      "lat": 31.78081609123727,
-      "lng": -84.47454921875001
-    }
-  });
+  //corners of map determine bounds
+  const [bounds, setBounds] = useState(null);
   // coords will determine center of map
-  const [coords, setCoords] = useState({ lat: 26.446926344396914, lng: -72.30633658306435 });
-  const [places, setPlaces] = useState([])
-  const [type, setType] = useState('restaurants')
-  const [isLoading, setIsLoading] = useState(false)
-  const [cardClicked, setCardClicked] = useState(null)
+  const [coords, setCoords] = useState(
+    // {
+    // lat: 26.446926344396914,
+    // lng: -72.30633658306435,
+    // }
+  );
+  const [places, setPlaces] = useState([]);
+  const [type, setType] = useState("restaurants");
+  const [rating, setRating] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [cardClicked, setCardClicked] = useState(null);
+  const [filteredPlaces, setFilteredPlaces] = useState([])
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setCoords({
+          lat: latitude,
+          lng: longitude,
+        });
+      }
+    );
+  }, []);
 
+  useEffect(()=> {
+    if (rating) {
+      console.log({rating})
+      const placesByRating = places.filter(place => Number(place.rating) > rating)
+      setPlaces(placesByRating)
+    }
+  }, [rating])
 
   useEffect(() => {
     // console.log("bounds from parent", bounds)
     // console.log("coords from parent", coords)
-
-    setIsLoading(true)
-
-    getPlacesData(type, bounds.sw, bounds.ne)
-      .then(data => {
-        setPlaces(data)
-        console.log(places)
-        setIsLoading(false)
-      })
-  }, [coords])
+    if (bounds) {
+      setIsLoading(true);
+      getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
+        setPlaces(data);
+        console.log(places);
+        setFilteredPlaces([])
+        setIsLoading(false);
+      });
+    }
+    
+  }, [coords, type]);
 
   return (
-    <div className='main'>
+    <div className="main">
       <Header />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item md={4}>
-          <List places={places} isLoading={isLoading} cardClicked={cardClicked} />
+          <List
+            places={filteredPlaces.length ? filteredPlaces : places}
+            isLoading={isLoading}
+            cardClicked={cardClicked}
+            type={type}
+            setType={setType}
+            rating={rating}
+            setRating={setRating}
+          />
         </Grid>
         <Grid
           item
@@ -61,7 +86,7 @@ export const App = () => {
             setCoords={setCoords}
             bounds={bounds}
             setBounds={setBounds}
-            places={places}
+            places = {places}
             setCardClicked={setCardClicked}
           />
         </Grid>
