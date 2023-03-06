@@ -18,7 +18,7 @@ export const App = () => {
   );
   const [places, setPlaces] = useState([]);
   const [type, setType] = useState("restaurants");
-  const [rating, setRating] = useState();
+  const [rating, setRating] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [cardClicked, setCardClicked] = useState(null);
   const [filteredPlaces, setFilteredPlaces] = useState([])
@@ -35,11 +35,8 @@ export const App = () => {
   }, []);
 
   useEffect(()=> {
-    if (rating) {
-      console.log({rating})
       const placesByRating = places.filter(place => Number(place.rating) > rating)
       setPlaces(placesByRating)
-    }
   }, [rating])
 
   useEffect(() => {

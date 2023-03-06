@@ -32,7 +32,6 @@ export default function List({
     const refs = Array(places.length)
       .fill()
       .map((_, i) => elementRefs[i] || createRef());
-    console.log("refs", refs);
     setElementRefs(refs);
   }, [places]);
 
@@ -50,17 +49,16 @@ export default function List({
             <Select value={type} onChange={(e)=>setType(e.target.value)}>
               <MenuItem value="restaurants">Restaurants</MenuItem>
               <MenuItem value="hotels">Hotels</MenuItem>
-              <MenuItem value="businesses">Businesses</MenuItem>
+              <MenuItem value="attractions">Attractions</MenuItem>
             </Select>
           </FormControl>
           <FormControl className="form-cont">
             <InputLabel>Rating</InputLabel>
-            <Select value={rating} onChange={(e)=>{
-              console.log('rating changed',{rating})
-              setRating(e.target.value)}}>
-              <MenuItem>3.0 and up</MenuItem>
-              <MenuItem>4.0 and up</MenuItem>
-              <MenuItem>4.5 and above</MenuItem>
+            <Select value={rating} onChange={(e)=>setRating(e.target.value)}>
+              <MenuItem value={''}>All</MenuItem>
+              <MenuItem value={3}>3.0 and above</MenuItem>
+              <MenuItem value={4}>4.0 and above</MenuItem>
+              <MenuItem value={4.5}>4.5 and above</MenuItem>
             </Select>
           </FormControl>
 

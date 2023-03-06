@@ -29,7 +29,6 @@ export default function Map({ coords, setCoords, setBounds, places, setCardClick
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
         onChildClick={(child)=> {
-          console.log(child)
           setCardClicked(child)
         }}
       >
