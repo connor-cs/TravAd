@@ -25,6 +25,7 @@ export const App = () => {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
+      // (thing=> console.log(thing))
       ({ coords: { latitude, longitude } }) => {
         setCoords({
           lat: latitude,
