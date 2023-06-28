@@ -8,7 +8,7 @@ import { getPlacesData } from "./api/api";
 export const App = () => {
   //api call needs map bounds
   //corners of map determine bounds
-  const [bounds, setBounds] = useState(null);
+  const [bounds, setBounds] = useState({});
   // coords will determine center of map
   const [coords, setCoords] = useState(
     // {
@@ -43,21 +43,21 @@ export const App = () => {
   useEffect(() => {
     // console.log("bounds from parent", bounds)
     // console.log("coords from parent", coords)
-    if (bounds) {
+    if (bounds.sw && bounds.ne) {
       setIsLoading(true);
       getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
-        setPlaces(data);
-        console.log(places);
+        setPlaces(data?.filter((place)=> place.name && place.num_reviews > 0));
+        // console.log(places);
         setFilteredPlaces([])
         setIsLoading(false);
       });
     }
     
-  }, [coords, type]);
+  }, [bounds, type]);
 
   return (
     <div className="main">
-      <Header />
+      <Header setCoords={setCoords}/>
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item md={4}>
           <List

@@ -56,13 +56,13 @@ export default function PlaceDetails({ place, selected, refProp }) {
 
         <Button
           onClick={() => window.open(place.website)}
-          style={{ "margin-top": "15px" }}
+          style={{ "marginTop": "15px" }}
         >
           Website
         </Button>
         <Button
           onClick={() => window.open(place.web_url)}
-          style={{ "margin-top": "15px" }}
+          style={{ "marginTop": "15px" }}
         >
           Trip Advisor
         </Button>

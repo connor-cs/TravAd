@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -9,10 +9,22 @@ import {
   InputLabel,
 } from "@mui/material";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
+import { Autocomplete } from "@react-google-maps/api";
+import "./header.css";
 
-import './header.css'
+export default function Header({setCoords}) {
+  const [value, setValue] = useState();
+  const [auto, setAuto] = useState(null)
 
-export default function Header() {
+  const onLoad = (autoC) => setAuto(autoC)
+  const key = process.env.REACT_APP_GOOGLE_MAPS_KEY;
+
+  const onPlaceChanged = () => {
+    const lat = auto.getPlace().geometry.location.lat()
+    const lng = auto.getPlace().geometry.location.lng()
+    setCoords({lat,lng})
+  }
+  
   return (
     <AppBar position="static">
       <Toolbar className="toolbar">
@@ -21,15 +33,23 @@ export default function Header() {
           <Typography className="title" variant="h5">
             Explore
           </Typography>
-          <div className="search-container">
+          {/* <div className="search-container">
             <SearchSharpIcon />
-            <TextField
+            <TextFields
               id="outlined-basic"
               className="search"
               label="search places"
               variant="outlined"
             />
-          </div>
+          </div> */}
+          <Autocomplete onPlaceChanged={onPlaceChanged} onLoad={onLoad}>
+          <TextField
+              id="outlined-basic"
+              className="search"
+              label="search places"
+              variant="outlined"
+            />
+            </Autocomplete>
         </Box>
       </Toolbar>
     </AppBar>
