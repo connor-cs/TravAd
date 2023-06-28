@@ -1,16 +1,30 @@
 
+.icon {
+  padding-top: 10px;
+}
+
 .toolbar {
   display: flex;
   justify-content: space-between;
   background-color: slateblue;
 }
 
+.title {
+  padding-top: 10px;
+}
+
 .search {
   color: white;
-
+  display: flex;
 }
 
 .search-container{
   display: flex;
   justify-content: space-between;
 }
+
+/* .box {
+  display: flex;
+  border: 2px solid red;
+  justify-content: space-between;
+} */
