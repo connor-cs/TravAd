@@ -16,7 +16,7 @@ export default function Map({ coords, setCoords, setBounds, places, setCardClick
   };
 
   return (
-    <div className="map-container" style={{ height: "85vh", width: "70%" }}>
+    <div className="map-container" style={{ height: "85vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key }}
         defaultCenter={coords} //this will be user's current location from browswer

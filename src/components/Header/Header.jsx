@@ -17,7 +17,6 @@ export default function Header({setCoords}) {
   const [auto, setAuto] = useState(null)
 
   const onLoad = (autoC) => setAuto(autoC)
-  const key = process.env.REACT_APP_GOOGLE_MAPS_KEY;
 
   const onPlaceChanged = () => {
     const lat = auto.getPlace().geometry.location.lat()
